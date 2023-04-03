@@ -11,7 +11,7 @@ REMOTE_HOST_SSH_USER=ash-temp-new.server
 # Define reverse port forwards
 # Format: 'REMOTE_PORT:LOCAL_HOST:LOCAL_PORT' (where LOCAL_HOST can be actual localhost or any host acessible by localhost)
 PORTS=(
-     23129:localhost:80      # 33754:localhost:22
+     23129:localhost:22      # 33754:localhost:22
      #"8880:localhost:80"    # 8880 -> 80
      #"8443:localhost:443"   # 8443 -> 443
     )
