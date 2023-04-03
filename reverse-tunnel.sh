@@ -26,5 +26,5 @@ done
 # Ignore early failed connections at boot
 export AUTOSSH_GATETIME=0
 
-autossh -4 -M 0 -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -N $PORT_STR -i $REMOTE_KEY -p $REMOTE_HOST_SSH_PORT $REMOTE_HOST_SSH_USER@$REMOTE_HOST
+autossh -4 -M 0 -o "ServerAliveInterval 10" -o "ServerAliveCountMax 3" -N $PORT_STR -i $REMOTE_KEY -p $REMOTE_HOST_SSH_PORT $REMOTE_HOST_SSH_USER@$REMOTE_HOST
 
