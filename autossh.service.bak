@@ -1,0 +1,31 @@
+[Unit]
+Description=Keeps autossh tunnel open
+#Documentation=file:///usr/share/doc/autossh/README.service man:autossh(1)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+Environment="AUTOSSH_GATETIME=0"
+#EnvironmentFile=
+#WorkingDirectory=
+ExecStart=/usr/bin/autossh -M 0 -N -q -p 22 -l root 192.168.28.150 \
+				-i /root/.ssh/raspberrypi.pem \
+				-o "StrictHostKeyChecking=no" \
+				-o "ExitOnForwardFailure=yes" \
+				-o "ServerAliveInterval 5" \
+				-o "ServerAliveCountMax 3" \
+				-R 8080:localhost:80
+ExecStop=/usr/bin/pkill -9 autossh
+#ExecStop=/usr/bin/killall -s KILL autossh
+##ExecStop=/bin/kill $MAINPID
+#ExecReload=
+#KillMode=process
+#StartLimitIntervalSec=
+Restart=always
+RestartSec=10
+#RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
